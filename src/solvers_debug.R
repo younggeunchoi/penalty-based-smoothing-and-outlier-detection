@@ -78,10 +78,8 @@ thr_hard = function (tvec, thres) {
 ## @return rate.est.baseline, expit(beta) 
 ## @return rate.est.nogamma, expit(predictors + beta)
 ## @return rate.est.full, expit(predictors + beta + gamma)
-ftn.SingleFit = function(Zmat = as.matrix(DF[ ,c("Z1", "Z2")]),
-  ID.region = DF$ID.region,
-  weight = DF$weight,
-  yvec = DF$obese.ind,
+ftn.SingleFit = function(Zmat, yvec, ID.region,
+  weight = rep(1,length(yvec)), 
   tuning_fusion = 0.6,
   tuning_sparse = 0.4,
   penalty = "hard",
@@ -183,7 +181,7 @@ ftn.SingleFit = function(Zmat = as.matrix(DF[ ,c("Z1", "Z2")]),
       temp.b = as.numeric(beta.old - tapply(X=temp.b1, INDEX=ID.region, FUN=sum) / temp.a) ;
       obj_gl = fused_gen2(y = temp.b,
         X = diag(rep(1,length(temp.b))), w = temp.a,
-        E = Emat, lambda1=0, lambda2 = tuning_fusion, pcg=FALSE, verbose=TRUE) ;
+        E = as.matrix(Emat), lambda1=0, lambda2 = tuning_fusion, pcg=FALSE, verbose=TRUE) ;
       beta = as.numeric(obj_gl$param) ;
       if (verbose) cat(sprintf("took %.2f secs\n", difftime(Sys.time(), time1, units="secs"))) ;
       fvalue.beta = ftn.obj(alpha, beta, gamma.old) ;
