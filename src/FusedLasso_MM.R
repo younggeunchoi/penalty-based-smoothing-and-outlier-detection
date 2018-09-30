@@ -9,11 +9,6 @@
 # lambda2 : penalty on l_1 norm of differences of pairs of coefficients defined in E
 
 
-# require to load FusedLasso_MM_inner.cpp
-require(RcppArmadillo)
-require(Rcpp)
-sourceCpp("./src/FusedLasso_MM_inner.cpp")
-
 fused_gen2 <- function(y,X,w = rep(1,length(y)),
   E,lambda1,lambda2,tol=1e-6,max_iter = 1000,
   pcg=FALSE, verbose=FALSE)
