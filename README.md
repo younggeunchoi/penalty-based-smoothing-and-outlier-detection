@@ -6,4 +6,4 @@ An R implementation of the method proposed in a paper, Penalty-based spatial smo
 
 - `vignette.R`: a simple example running the method
 - `src/solvers.R`: functions for the proposed procedure
-- `FusedLasso_mm.R` and `FusedLasso_MM_inner.cpp`: internals functions for the fused lasso used in the beta-step (see the paper for details)
+- `src/FusedLasso_MM.R` and `src/FusedLasso_MM_inner.cpp`: internals functions for the fused lasso used in the beta-step (see the paper for details)
